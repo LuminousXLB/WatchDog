@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import priv_set
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -120,18 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# Email
-# https://docs.djangoproject.com/en/1.11/topics/email/
 
-EMAIL_HOST = 'smtp.aliyun.com'
-
-EMAIL_PORT = 465
-
-EMAIL_HOST_USER = 'taraxacum45e9a@aliyun.com'
-
-EMAIL_HOST_PASSWORD = '7bb5523db6e00f60'
-
-EMAIL_USE_SSL = True
-
-DEFAULT_FROM_EMAIL = 'Watch Dog <taraxacum45e9a@aliyun.com>'
 
