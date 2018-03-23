@@ -93,7 +93,7 @@ if __name__ == '__main__':
     jwc = watchdog(
         'http://jwc.sjtu.edu.cn/rss/rss_notice.aspx?SubjectID=198015&TemplateID=221027',
         ['john980118@outlook.com'],
-        'log',
+        'wd.log',
         150
     )
 
