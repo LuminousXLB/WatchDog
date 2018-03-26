@@ -48,13 +48,19 @@ class watchdog:
         return {
             'title': item.find('title').text,
             'link': item.find('link').text,
-            'pubdate': item.find('pubdate').text
+            'pubdate': item.find('pubDate').text
         }
 
     def _writehtml(self, url):
-        fn = link.split('/')[-1]
+        fn = url.split('/')[-1]
         with open('/root/download/anno/' + fn, 'wb') as f:
             rsp = requests.get(url)
+            f.write(rsp.content)
+
+    def _writexml(self):
+        fn = 'rss_notice.xml'
+        with open('/root/douwnload/anno/' + fn, 'wb') as f:
+            rsp = requests.get(self.url)
             f.write(rsp.content)
 
     def _announce(self, pool):
