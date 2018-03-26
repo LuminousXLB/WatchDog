@@ -51,10 +51,21 @@ class watchdog:
             'pubdate': item.find('pubdate').text
         }
 
+    def _writehtml(self, url):
+        fn = link.split('/')[-1]
+        with open('/root/download/anno/' + fn, 'wb') as f:
+            rsp = requests.get(url)
+            f.write(rsp.content)
+
     def _announce(self, pool):
+        lst = []
+
         for item in pool:
             data = self._doc2dict(item)
+            lst.append(data)
+            self._writehtml(data['link'])
             self.logger('{pubdate} | {title}'.format_map(data))
+
         self._mail(
             '【WatchDog】教务处公告更新',
             str(pool).replace(',', ',\n')
