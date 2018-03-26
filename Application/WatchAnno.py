@@ -1,32 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
-from time import sleep, ctime
+from time import sleep
 from datetime import datetime
-from django.core.mail import send_mail
-import os
+from utils import *
 
 
-class Logger:
-    def __init__(self, log_file, *pre):
-        self.log_file = log_file
-        self.pre = pre
-
-    def __call__(self, *msg):
-        lst = self.pre + msg
-        print('[%s]' % ctime(), *lst)
-        with open(self.log_file, 'a', encoding='utf-8') as f:
-            f.write('[%s]' % ctime())
-            f.write(' '.join(lst))
-            f.write('\n')
-
-
-class watchdog:
+class WathchAnno:
     def __init__(self, url, recipent, log_file, mail_max):
         self.url = url
         self.recipent = recipent
         self.mail_max = mail_max
         self.mail_cnt = 0
-        self.logger = Logger(log_file)
+        self.logger = Logger(log_file, 'WathchAnno')
 
         lst = self._get()
         self.anno_len = len(lst)
@@ -111,4 +96,3 @@ if __name__ == '__main__':
                 ['454633705@qq.com']
             )
             break
-
