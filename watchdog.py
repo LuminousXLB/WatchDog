@@ -1,4 +1,5 @@
 import requests
+from xml.dom.minidom import parseString
 from bs4 import BeautifulSoup
 from time import sleep, ctime
 from datetime import datetime
@@ -38,12 +39,22 @@ class watchdog:
 
     def _get(self):
         rsp = requests.get(self.url)
-        soup = BeautifulSoup(rsp.content, 'lxml')
-        return soup.findAll('item')
+        rss = rsp.content.decode('gbk')
+        doc = parseString(rss)
+        return doc.getElementsByTagName('item')
+
+    def _doc2dict(self, doc):
+        item = BeautifulSoup(doc.toxml(), 'xml').find('item')
+        return {
+            'title': item.find('title').text,
+            'link': item.find('link').text,
+            'pubdate': item.find('pubdate').text
+        }
 
     def _announce(self, pool):
         for item in pool:
-            self.logger('{pubdate} | {title}'.format_map(item))
+            data = self._doc2dict(item)
+            self.logger('{pubdate} | {title}'.format_map(data))
         self._mail(
             '【WatchDog】教务处公告更新',
             str(pool).replace(',', ',\n')
@@ -62,13 +73,7 @@ class watchdog:
             pool = []
             new_length = len(lst)
             while len(lst) > self.anno_len:
-                item = lst[0]
-                data = {
-                    'title': item.find('title').text,
-                    'link': item.find('link').text,
-                    'pubdate': item.find('pubdate').text
-                }
-                pool.append(data)
+                pool.append(lst[0])
                 del lst[0]
             self.anno_len = new_length
             return self._announce(pool)
@@ -111,4 +116,3 @@ if __name__ == '__main__':
                 ['454633705@qq.com']
             )
             break
-
