@@ -126,5 +126,5 @@ if __name__ == '__main__':
                 log('sleep(60*30)')
                 sleep(60*30)
         except BaseException as err:
-            postman.alert(err.message)
+            postman.alert(err.msg)
             break
