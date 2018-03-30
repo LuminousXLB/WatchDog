@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from time import sleep, ctime
 from datetime import datetime
 from django.core.mail import send_mail
-import os
 
 
 class Logger:
@@ -109,9 +108,7 @@ def sleep_stratagey():
         sleep(15*60)
 
 
-if __name__ == '__main__':
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "watchdog.settings")
-
+def main():
     jwc = watchdog(
         'http://jwc.sjtu.edu.cn/rss/rss_notice.aspx?SubjectID=198015&TemplateID=221027',
         ['john980118@outlook.com'],

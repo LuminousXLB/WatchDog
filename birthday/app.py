@@ -61,8 +61,6 @@ class WatchDog:
     def check(self, day, delta=0):
         f = datetime.strftime(day, self.iformat)
         e = datetime.strftime(day+timedelta(delta), self.iformat)
-        print(f, e)
-        print(self.df)
         res = self.df[f:e]
         ret = res.values.tolist()
         for item in ret:
@@ -100,10 +98,7 @@ def today(yesterday=False):
         return datetime.strftime(datetime.now(), '%Y-%m-%d')
 
 
-if __name__ == '__main__':
-    import os
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "watchdog.settings")
-
+def main():
     log = Logger('birthday.log')
     postman = Postman(
         'taraxacum45e9a@aliyun.com',
