@@ -2,7 +2,6 @@ from time import sleep, ctime
 from datetime import datetime, timedelta
 from django.core.mail import send_mail
 import pandas as pd
-import os
 
 
 class Logger:
@@ -102,6 +101,9 @@ def today(yesterday=False):
 
 
 if __name__ == '__main__':
+    import os
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "watchdog.settings")
+
     log = Logger('birthday.log')
     postman = Postman(
         'taraxacum45e9a@aliyun.com',
