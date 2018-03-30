@@ -121,5 +121,6 @@ def app():
                 log('sleep(60*30)')
                 sleep(60*30)
         except BaseException as err:
-            postman.alert(err.msg)
+            log('[ERROR] {}'.format(str(err)))
+            postman.alert(str(err))
             break

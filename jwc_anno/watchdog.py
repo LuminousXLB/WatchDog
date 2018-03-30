@@ -122,7 +122,7 @@ def app():
         try:
             jwc()
         except BaseException as err:
-            jwc.logger('[ERROR] {}'.format(err))
+            jwc.logger('[ERROR] {}'.format(str(err)))
             send_mail(
                 '【WatchDog】WatchDog出错',
                 str(err),
