@@ -98,7 +98,7 @@ def today(yesterday=False):
         return datetime.strftime(datetime.now(), '%Y-%m-%d')
 
 
-def main():
+def app():
     log = Logger('birthday.log')
     postman = Postman(
         'taraxacum45e9a@aliyun.com',
@@ -108,7 +108,7 @@ def main():
         'birthday.log',
         'birthday'
     )
-    wd = WatchDog(postman, log, 'sisi.xlsx', 'Sheet1')
+    wd = WatchDog(postman, log, 'birthday/sisi.xlsx', 'Sheet1')
 
     td = today(yesterday=True)
     while True:

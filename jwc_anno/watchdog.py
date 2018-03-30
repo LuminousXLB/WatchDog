@@ -108,7 +108,7 @@ def sleep_stratagey():
         sleep(15*60)
 
 
-def main():
+def app():
     jwc = watchdog(
         'http://jwc.sjtu.edu.cn/rss/rss_notice.aspx?SubjectID=198015&TemplateID=221027',
         ['john980118@outlook.com'],
