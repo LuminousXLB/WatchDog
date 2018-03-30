@@ -94,7 +94,7 @@ class WatchDog:
         self.postman('生日提醒', '\n'.join(msg))
 
 
-def today(yesterday=false):
+def today(yesterday=False):
     if yesterday:
         return datetime.strftime(datetime.now()-timedelta(1), '%Y-%m-%d')
     else:
