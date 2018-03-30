@@ -88,7 +88,7 @@ class WatchDog:
             '=== that\'s all ==='
         )
         self.log(str(lst7))
-        self.postman('生日提醒', '\n'.join(msg))
+        self.postman('生日提醒', '\n'.join(msg).replace("'", ""))
 
 
 def today(yesterday=False):
