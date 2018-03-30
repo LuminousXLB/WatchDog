@@ -70,11 +70,11 @@ class watchdog:
             data = self._doc2dict(item)
             lst.append(data)
             self._writehtml(data['link'])
-            self.logger('{pubdate} | {title}'.format_map(data))
+            self.logger('{title} | {pubdate} | {url}'.format_map(data))
 
         self._mail(
             '【WatchDog】教务处公告更新',
-            str(pool).replace(',', ',\n')
+            str(lst).replace(',', ',\n')
         )
 
         if self.mail_cnt >= self.mail_max:
@@ -128,7 +128,7 @@ if __name__ == '__main__':
             jwc.logger('[ERROR] {}'.format(err))
             send_mail(
                 '【WatchDog】WatchDog出错',
-                err,
+                str(err),
                 'taraxacum45e9a@aliyun.com',
                 ['454633705@qq.com']
             )
