@@ -70,7 +70,7 @@ class watchdog:
             data = self._doc2dict(item)
             lst.append(data)
             self._writehtml(data['link'])
-            self.logger('{title} | {pubdate} | {url}'.format_map(data))
+            self.logger('{title} | {pubdate} | {link}'.format_map(data))
 
         self._mail(
             '【WatchDog】教务处公告更新',
