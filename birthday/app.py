@@ -14,7 +14,7 @@ class Logger:
         print('[%s]' % ctime(), *lst)
         with open(self.log_file, 'a', encoding='utf-8') as f:
             f.write('[%s]' % ctime())
-            f.write(' '.join(lst))
+            f.write(str(lst))
             f.write('\n')
 
 
