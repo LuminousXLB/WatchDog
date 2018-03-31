@@ -117,6 +117,7 @@ def app():
                 wd()
                 log('sleep(60*60*8)')
                 sleep(60*60*8)
+                td = today()
             else:
                 log('sleep(60*30)')
                 sleep(60*30)
