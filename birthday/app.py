@@ -67,19 +67,21 @@ class WatchDog:
             item[0] = item[0].strftime(self.oforamt)
         return ret
 
-    def __call__(self):
+    def __call__(self, supress=False):
         today = datetime.now()
+        lst0 = self.check(today)
+        lst3 = self.check(today, 3)
         lst7 = self.check(today, 7)
 
         msg = [
             '=== 生日提醒 ===',
             '- 今天'
         ]
-        msg += ['    '+str(item) for item in self.check(today)]
+        msg += ['    '+str(item) for item in lst0]
         msg.append(
             '- 三天之内'
         )
-        msg += ['    '+str(item) for item in self.check(today, 3)]
+        msg += ['    '+str(item) for item in lst3]
         msg.append(
             '- 七天之内'
         )
@@ -88,7 +90,8 @@ class WatchDog:
             '=== that\'s all ==='
         )
         self.log(str(lst7))
-        self.postman('生日提醒', '\n'.join(msg).replace("'", ""))
+        if !supress or len(lst0) + len(lst3) > 0:
+            self.postman('生日提醒', '\n'.join(msg).replace("'", ""))
 
 
 def today(yesterday=False):
@@ -114,7 +117,7 @@ def app():
     while True:
         try:
             if today() != td:
-                wd()
+                wd(True)
                 log('sleep(60*60*8)')
                 sleep(60*60*8)
                 td = today()
