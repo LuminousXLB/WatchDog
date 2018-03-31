@@ -90,7 +90,7 @@ class WatchDog:
             '=== that\'s all ==='
         )
         self.log(str(lst7))
-        if !supress or len(lst0) + len(lst3) > 0:
+        if not supress or len(lst0) + len(lst3) > 0:
             self.postman('生日提醒', '\n'.join(msg).replace("'", ""))
 
 
