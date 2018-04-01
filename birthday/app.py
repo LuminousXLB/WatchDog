@@ -44,7 +44,7 @@ class Postman:
         send_mail(
             '[{}] {}'.format(self.pre, 'alert'),
             message,
-            self.from_email,
+            self.send_from,
             [self.administrator]
         )
         self.log(self.mail_cnt, 'alert', message)
