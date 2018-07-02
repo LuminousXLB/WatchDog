@@ -73,7 +73,7 @@ class watchdog:
 
         self._mail(
             '【WatchDog】教务处公告更新',
-            str(lst).replace(',', ',\n')
+            str(lst).replace(',', ',\n').replace("'", "")
         )
 
         if self.mail_cnt >= self.mail_max:
