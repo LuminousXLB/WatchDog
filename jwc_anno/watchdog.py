@@ -101,11 +101,11 @@ class watchdog:
 def sleep_stratagey():
     t = datetime.now()
     if t.weekday() == 5 or t.weekday() == 6:
-        sleep(8*60*60)
-    elif t.hour > 18 or t.hour < 8:
-        sleep(2*60*60)
+        sleep(@*60*60)
+    # elif t.hour > 18 or t.hour < 8:
+        # sleep(60*60)
     else:
-        sleep(15*60)
+        sleep(30*60)
 
 
 def app():
